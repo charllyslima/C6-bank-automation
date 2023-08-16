@@ -1,20 +1,16 @@
-# Projeto de Importação de Dados do C6 Bank
+# Automação de Dados Bancários
 
-Este projeto tem como objetivo importar dados de extratos em formato PDF do C6 Bank, interpretá-los e salvar as transações em um banco de dados MySQL.
+Este projeto consiste em uma aplicação de automação para processar extratos bancários em formato PDF e armazenar as informações relevantes em um banco de dados. Além disso, permite gerar arquivos CSV filtrados por tipo de transação.
 
 ![image](https://github.com/charllyslima/C6_Bank_Automation/assets/96506145/5db25526-6608-4c32-8113-edb57cee8a43)
 
+## Requisitos
 
-## Pré-requisitos
-
-Antes de executar o projeto, certifique-se de ter os seguintes pré-requisitos instalados:
-
-- Python 3.7 ou superior
-- MySQL Server
+Certifique-se de ter o Python 3.8 ou superior instalado em seu sistema.
 
 ## Instalação
 
-1. Clone o repositório para o seu sistema local:
+1. Clone este repositório para o seu computador:
 
 ```bash
 git clone https://github.com/charllyslima/C6_Bank_Automation.git
@@ -34,62 +30,45 @@ python3 -m venv venv
 
 4. Ative o ambiente virtual:
 
-- No Windows:
+No Windows:
 
 ```bash
 venv\Scripts\activate
 ```
 
-- No macOS e Linux:
+No macOS e Linux:
 
 ```bash
 source venv/bin/activate
 ```
 
-5. Instale as dependências do projeto:
+5. Instale as dependências:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-6. Crie um arquivo `.env` na raiz do projeto e configure as variáveis de ambiente:
+## Uso
 
-```
-MYSQL_HOST=seu-host
-MYSQL_USER=seu-usuario
-MYSQL_PASSWORD=sua-senha
-MYSQL_DB=seu-banco
-```
-
-7. Execute o script principal:
+1. Execute o aplicativo com o seguinte comando:
 
 ```bash
 python main.py
 ```
 
-## Utilização
+2. A interface gráfica será exibida, permitindo que você selecione a pasta dos extratos bancários. Clique no botão "Selecionar" para escolher a pasta que contém os arquivos PDF dos extratos.
 
-- Ao executar o script `main.py`, a interface gráfica será aberta.
-- Clique no botão "Processar Dados" para importar e processar os extratos PDF.
-- A barra de progresso mostrará o progresso do processamento.
-- Após o processamento, os dados serão inseridos no banco de dados MySQL.
+3. Depois de selecionar a pasta, clique no botão "Processar Dados" para processar os extratos e armazenar as informações no banco de dados. A barra de progresso exibirá o progresso do processamento.
 
-![image](https://github.com/charllyslima/C6_Bank_Automation/assets/96506145/39467719-03c6-44cf-989a-28d696db9603)
-![image](https://github.com/charllyslima/C6_Bank_Automation/assets/96506145/d534c219-4f23-48de-b74d-304e01ca900d)
+4. Use o menu suspenso "Filtrar por Tipo" para selecionar o tipo de transação (C - Crédito ou D - Débito) que deseja incluir no arquivo CSV.
 
-
-## Gerar CSV
-
-- Para gerar um arquivo CSV com as transações filtradas pelo tipo, insira o tipo desejado (C ou D) no campo "Filtrar por Tipo".
-- Clique no botão "Gerar CSV" para criar o arquivo CSV com as transações filtradas.
+5. Clique no botão "Gerar CSV" para gerar um arquivo CSV filtrado de acordo com o tipo de transação selecionado. O arquivo será gerado na mesma pasta do projeto.
 
 ## Contribuição
 
-Contribuições são bem-vindas! Se você encontrar algum problema ou tiver sugestões de melhoria, sinta-se à vontade para abrir uma issue ou enviar um pull request.
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar uma solicitação de pull.
 
 ## Licença
 
-Este projeto está licenciado sob a Licença MIT - consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes.
-```
+Este projeto está licenciado sob a [Licença MIT](LICENSE).
 
-Lembre-se de substituir `seu-usuario`, `nome-do-repositorio`, `seu-host`, `seu-usuario`, `sua-senha` e `seu-banco` pelas informações corretas para o seu ambiente.

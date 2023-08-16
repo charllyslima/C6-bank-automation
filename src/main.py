@@ -1,6 +1,6 @@
 import os
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, filedialog
 from ttkthemes import ThemedTk
 from threading import Thread
 from glob import glob
@@ -40,25 +40,19 @@ def process_files():
 
     create_tables(connection)  # Criar tabelas no banco de dados
 
-    # Ler arquivos PDF da pasta conta_corrente
-    conta_corrente_folder = os.path.join(ASSETS_PATH, 'conta_corrente')
-    conta_corrente_transactions = read_pdf_files(conta_corrente_folder)
-
-    # Ler arquivos PDF da pasta conta_credito
-    conta_credito_folder = os.path.join(ASSETS_PATH, 'conta_credito')
-    conta_credito_transactions = read_pdf_files(conta_credito_folder)
-
-    # Combina as transações das duas fontes
-    all_transactions = conta_corrente_transactions + conta_credito_transactions
+    # Ler arquivos PDF da pasta selecionada
+    selected_folder = folder_var.get()
+    selected_folder_path = os.path.join(selected_folder, '')
+    transactions = read_pdf_files(selected_folder_path)
 
     # Configurar a barra de progresso
-    progress_bar['maximum'] = len(all_transactions)
+    progress_bar['maximum'] = len(transactions)
 
     # Inserir as transações no banco de dados
-    for idx, transaction in enumerate(all_transactions):
+    for idx, transaction in enumerate(transactions):
         insert_transactions(connection, [transaction])
         progress_bar['value'] = idx + 1
-        percent_complete = (idx + 1) / len(all_transactions) * 100
+        percent_complete = (idx + 1) / len(transactions) * 100
         percent_label.config(text=f"{percent_complete:.1f}%")
         root.update()
 
@@ -88,14 +82,30 @@ def generate_csv():
 
     info_label.config(text=f"Arquivo '{csv_filename}' gerado com sucesso.")
 
+def select_folder():
+    selected_folder = filedialog.askdirectory(title="Selecione a pasta dos extratos")
+    folder_var.set(selected_folder)
+
 # Criação da janela da interface gráfica com estilo temático
 root = ThemedTk(theme="arc")  # Escolha um tema que você goste
 root.title("Processar Dados PDF")
-root.geometry("500x250")  # Fixar tamanho da tela em 250x500
+root.geometry("500x250")  # Fixar tamanho da tela em 500x250
+
+# Botão para selecionar a pasta dos extratos
+folder_frame = ttk.Frame(root)
+folder_frame.pack(fill=tk.X, padx=10, pady=10)
+folder_var = tk.StringVar()
+folder_var.set("")
+folder_label = ttk.Label(folder_frame, text="Pasta dos Extratos:")
+folder_label.pack(side=tk.LEFT)
+folder_entry = ttk.Entry(folder_frame, textvariable=folder_var, state="readonly")
+folder_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(5, 0))
+select_button = ttk.Button(folder_frame, text="Selecionar", command=select_folder, style="Gray.TButton")
+select_button.pack(side=tk.LEFT)
 
 # Barra de progresso
-progress_bar = ttk.Progressbar(root, mode='determinate', length=200)
-progress_bar.pack(pady=10)
+progress_bar = ttk.Progressbar(root, mode='determinate', length=250)
+progress_bar.pack(pady=(20, 0))
 
 # Rótulo para exibir a porcentagem completa
 percent_label = tk.Label(root, text="", font=("Helvetica", 12))

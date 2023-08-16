@@ -11,7 +11,7 @@ def insert_transactions(connection, transactions):
 
         for t in transactions:
             formatted_date = t["date"].strftime("%Y-%m-%d")  # Formatar a data para "YYYY-MM-DD"
-            formatted_transactions.append((t["description"], formatted_date, t["amount"], t["category"], t["subcategory"], t["type"]))
+            formatted_transactions.append((t["description"], formatted_date, t["amount"], t["category"], t["subcategory"], t["transaction_type"]))
 
         cursor.executemany(insert_query, formatted_transactions)
         connection.commit()

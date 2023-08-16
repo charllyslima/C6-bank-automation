@@ -31,7 +31,6 @@ def parse_pdf(file_path):
                             description = description.replace('-', ' - ')
 
                             transactions.append([date, description, amount, transaction_type])
-                            print(f"Data: {date}, Descrição: {description}, Valor: {amount}, Tipo: {transaction_type}")
                     except ValueError:
                         # Ignorar linhas com data inválida
                         pass

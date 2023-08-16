@@ -2,6 +2,9 @@
 
 Este projeto tem como objetivo importar dados de extratos em formato PDF do C6 Bank, interpretá-los e salvar as transações em um banco de dados MySQL.
 
+![image](https://github.com/charllyslima/C6_Bank_Automation/assets/96506145/5db25526-6608-4c32-8113-edb57cee8a43)
+
+
 ## Pré-requisitos
 
 Antes de executar o projeto, certifique-se de ter os seguintes pré-requisitos instalados:
@@ -14,13 +17,13 @@ Antes de executar o projeto, certifique-se de ter os seguintes pré-requisitos i
 1. Clone o repositório para o seu sistema local:
 
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
+git clone https://github.com/charllyslima/C6_Bank_Automation.git
 ```
 
 2. Navegue até o diretório do projeto:
 
 ```bash
-cd nome-do-repositorio
+cd C6_Bank_Automation
 ```
 
 3. Crie um ambiente virtual (opcional, mas recomendado):
@@ -70,6 +73,10 @@ python main.py
 - Clique no botão "Processar Dados" para importar e processar os extratos PDF.
 - A barra de progresso mostrará o progresso do processamento.
 - Após o processamento, os dados serão inseridos no banco de dados MySQL.
+
+![image](https://github.com/charllyslima/C6_Bank_Automation/assets/96506145/39467719-03c6-44cf-989a-28d696db9603)
+![image](https://github.com/charllyslima/C6_Bank_Automation/assets/96506145/d534c219-4f23-48de-b74d-304e01ca900d)
+
 
 ## Gerar CSV
 
